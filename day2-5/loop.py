@@ -17,18 +17,21 @@
 #     print("meow")
 
 
+
 # for _ in range(3):
 #     print("meow" , end='! ')
 
+
+
 # List
-students = ["Hermione", "Harry", "Ron", "Goku"]
+# students = ["Hermione", "Harry", "Ron", "Goku"]
 
 # Dictionary
-students = {
-    "Harry": "Gryffindor",
-    "Hermione": "Gryffindor",
-    "Draco": "Slytherin"
-}
+# students = {
+#     "Harry": "Gryffindor",
+#     "Hermione": "Gryffindor",
+#     "Draco": "Slytherin"
+# }
 
 # print(students[0])
 # print(students[1])
@@ -37,5 +40,19 @@ students = {
 # print(students['Harry'])
 # print(students['Draco'])
 
-for student in students:   
-    print(student , students[student])
+# for student in students:   
+#     print(student , students[student])
+
+
+# number1 = 1
+# # Recursion
+# def recursive():
+#     global number1
+#     print(number1)
+#     number1 += 1
+#     if number1 > 10: 
+#         return 0
+#     recursive()
+
+# recursive()
+
