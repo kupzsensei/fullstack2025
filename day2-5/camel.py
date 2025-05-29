@@ -4,9 +4,11 @@ name = "firtName"
 
 for c in name:
     if c.isupper():
-        print("_", end="")
-        print(c.lower(), end="")
+
+        print("_" , c.lower() , end="" , sep="")
     else:
         print(c , end='')
 
 print()
+
+# first_name
