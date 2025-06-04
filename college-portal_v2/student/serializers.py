@@ -20,6 +20,8 @@ class StudentGetSerializer(serializers.ModelSerializer):
             'birth_place' , 
             'lrn_number',
             'educational_background',
+            'degree',
+            'guardian',
         ]
 
 class StudentPostSerializer(serializers.ModelSerializer):
