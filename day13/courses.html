@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-clifford: #da373d;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex gap-3 p-5 items-center">
+      <input
+        type="text"
+        placeholder="New Course"
+        id="newCourse"
+        class="p-2 border border-black"
+      />
+      <button id="btn-submit" class="p-2 border border-black">Submit</button>
+    </div>
+    <div
+      id="container"
+      class="w-screen min-h-screen flex flex-col gap-5 p-5 overflow-y-auto items-center"
+    ></div>
+
+    <script>
+      const container = document.getElementById("container");
+      function renderData(data) {
+        for (const item of data) {
+          container.innerHTML += `
+              <div
+          class="w-full max-w-sm bg-white h-min rounded-2xl shadow-lg overflow-hidden transform transition-all hover:scale-105 duration-300"
+        >
+          <!-- Profile Picture and Name Section -->
+          <div class="p-6 flex flex-col items-center">
+            <h2 class="text-2xl font-bold text-gray-800 mt-4">
+            Bachelor of Science
+            </h2>
+            <p class="text-sm text-gray-500">
+               ${item.name}
+            </p>
+          </div>
+        </div>
+            `;
+        }
+      }
+
+      const getStudents = async () => {
+        const response = await fetch("http://172.17.2.133:8000/api/courses/");
+
+        const res = await response.json();
+        console.log(res);
+        return res;
+      };
+
+      const createCourse = async (postData) => {
+        const response = await fetch("http://172.17.2.133:8000/api/courses/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(postData),
+        });
+
+        const res = await response.json();
+        console.log(res);
+        if (!response.ok) {
+          alert("Somethin went Wrong");
+        }
+
+        return await res;
+      };
+
+      document.getElementById("btn-submit").addEventListener("click", () => {
+        createCourse({ name: document.getElementById("newCourse").value });
+        container.innerHTML = "";
+        getStudents().then((response) => renderData(response));
+      });
+
+      getStudents().then((response) => renderData(response));
+    </script>
+  </body>
+</html>
